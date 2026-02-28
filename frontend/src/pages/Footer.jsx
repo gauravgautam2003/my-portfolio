@@ -168,8 +168,8 @@ const Footer = () => {
                                 transition={{ delay: 0.3, duration: 0.4 }}
                                 viewport={{ once: true }}
                             >
-                                <a href="mailto:gauravgautam2003@gmail.com" className='text-gray-400 hover:text-[#0b7def] transition-colors'>
-                                    gauravgautam2003@gmail.com
+                                <a href="mailto:gauravgautam9865@gmail.com" className='text-gray-400 hover:text-[#0b7def] transition-colors'>
+                                    gauravgautam9865@gmail.com
                                 </a>
                             </motion.li>
                             <motion.li
