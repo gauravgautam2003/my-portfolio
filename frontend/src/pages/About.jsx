@@ -13,8 +13,29 @@ const About = () => {
         { label: "Email", value: "gauravgautam9865@gmail.com" },
         { label: "Availability", value: "Open to Work" },
     ]
+    const glowVariants = {
+        initial: {
+            scale: 1, y: 0,
+            filter: "drop-shadow(0 0 0 rgba(0, 0, 0, 0))"
+        },
+        hover: {
+            scale: 1.02, y: -3,
+            filter: "drop-shadow(0 0 8px rgba(13, 88, 204, 0.9)) drop-shadow(0 0 18px rgba(16, 185, 129, 0.8))",
+            transition: {
+                type: "spring",
+                stiffness: 300,
+                damping: 15
+            }
+        },
+        tap: {
+            scale: 95,
+            y: 0,
+            transition: {
+                duration: 0.08
+            }
+        }
+    }
 
-  
 
     const education = [
         {
@@ -59,9 +80,9 @@ const About = () => {
                     >
                         <div className='relative mb-8'>
                             <div className='w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-[#0b7def]/30 shadow-2xl'>
-                                <img 
-                                    src={avator} 
-                                    alt="Gaurav Gautam" 
+                                <img
+                                    src={avator}
+                                    alt="Gaurav Gautam"
                                     className='w-full h-full object-cover'
                                 />
                             </div>
@@ -88,38 +109,51 @@ const About = () => {
                         {/* Social Links */}
                         <div className='flex gap-4'>
                             <motion.a
-                                whileHover={{ scale: 1.1, y: -3 }}
+                                variants={glowVariants}
+                                initial="initial"
+                                whileHover="hover"
+                                whileTap="tab"
                                 href="https://github.com/gauravgautam2003"
                                 target='_blank'
                                 rel="noopener noreferrer"
-                                className='w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white text-xl hover:bg-[#0b7def]/30 transition-colors'
+                                className=' border p-3 border-gray-300 bg-gray-900 rounded-full transition-colors'
                             >
-                                <FaGithub />
+                                <FaGithub style={{ color: "#ffffff" }} />
+
                             </motion.a>
                             <motion.a
-                                whileHover={{ scale: 1.1, y: -3 }}
-                                href="https://linkedin.com/in/gauravgautam2003"
+                                variants={glowVariants}
+                                initial="initial"
+                                whileHover="hover"
+                                whileTap="tab"
+                                href="https://www.linkedin.com/in/gaurav-gautam-a850362a4/"
                                 target='_blank'
                                 rel="noopener noreferrer"
-                                className='w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white text-xl hover:bg-[#0b7def]/30 transition-colors'
+                                className=' border p-3 border-gray-300 bg-gray-900 rounded-full transition-colors'
                             >
-                                <FaLinkedin />
+                                <FaLinkedin style={{ color: "#0077B5" }} />
                             </motion.a>
                             <motion.a
-                                whileHover={{ scale: 1.1, y: -3 }}
+                            
+                                variants={glowVariants}
+                                initial="initial"
+                                whileHover="hover"
+                                whileTap="tab"
                                 href="https://whatsapp.com/channel/0029VbBj5b5GehEPNFo3nT2d"
                                 target='_blank'
                                 rel="noopener noreferrer"
-                                className='w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white text-xl hover:bg-[#0b7def]/30 transition-colors'
+                                className=' border p-3 border-gray-300 bg-gray-900 rounded-full transition-colors'
                             >
-                                <IoLogoWhatsapp />
+                                <IoLogoWhatsapp style={{ color: "#25D366" }} />
                             </motion.a>
                             <motion.a
-                                whileHover={{ scale: 1.1, y: -3 }}
+                                variants={glowVariants}
+                                initial="initial"
+                                whileHover="hover"
+                                whileTap="tab"
                                 href="mailto:gauravgautam9865@gmail.com"
-                                className='w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white text-xl hover:bg-[#0b7def]/30 transition-colors'
-                            >
-                                <MdEmail />
+                                className=' border p-3 border-gray-300 bg-gray-900 rounded-full transition-colors'                      >
+                                <MdEmail style={{ color: "4285f4" }} />
                             </motion.a>
                         </div>
                     </motion.div>

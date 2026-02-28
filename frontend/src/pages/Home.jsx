@@ -9,8 +9,8 @@ import avator from "../assets/avator.png"
 
 const socials = [
     { Icon: FaLinkedin, label: "LinkedIn", href: "https://linkedIn.com/in/" },
-    { Icon: FaGithub, label: "Github", href: "https://github.com/gauravgautam2003" },
-    { Icon: IoLogoWhatsapp, label: "WhatsApp", href: "https://whatsapp.com/channel/0029VbBj5b5GehEPNFo3nT2d" },
+    { Icon: FaGithub, label: "Github", href: "https://github.com/gauravgautam2003"},
+    { Icon: IoLogoWhatsapp, label: "WhatsApp", href: "https://whatsapp.com/channel/0029VbBj5b5GehEPNFo3nT2d"},
 ]
 
 const glowVariants = {
@@ -113,7 +113,7 @@ const Home = () => {
                                 <a href="/Resume.pdf" className='px-6 py-3 rounded-full font-medium text-lg text-black bg-white hover:bg-gray-300 shadow-lg hover:scale-105 transition-all'>My Resume</a>
                             </motion.div>
 
-                            <div className='mt-10 flex gap-5 text-2xl md:text-3xl justify-center lg:justify-start'>
+                            <div className='mt-10 flex gap-5 text-xl md:text-lg justify-center lg:justify-start'>
                                 {socials.map(({ Icon, label, href }) => (
                                     <motion.a
                                         key={label}
@@ -125,7 +125,8 @@ const Home = () => {
                                         initial="initial"
                                         whileHover="hover"
                                         whileTap="tab"
-                                        className='text-gray-300'
+                                        className=' border p-3 border-gray-300 bg-gray-900 rounded-full transition-colors'
+                                        style={{ color : Icon === FaGithub ? "#ffffff" : Icon === FaLinkedin ? "#0077B5" : "#25D366" }}
                                     >
                                         <Icon />
                                     </motion.a>

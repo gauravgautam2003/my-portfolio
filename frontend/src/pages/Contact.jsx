@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaLinkedin, FaGithub, FaWhatsapp, FaPaperPlane } from "react-icons/fa"
-import { FaXTwitter } from "react-icons/fa6"
+import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaPaperPlane } from "react-icons/fa"
+
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -54,11 +54,6 @@ const Contact = () => {
         }
     ]
 
-    const socialLinks = [
-        { icon: <FaLinkedin />, label: "LinkedIn", href: "https://linkedin.com/in/gauravgautam", color: "#0077B5" },
-        { icon: <FaGithub />, label: "GitHub", href: "https://github.com/gauravgautam2003", color: "#ffffff" },
-        { icon: <FaWhatsapp />, label: "WhatsApp", href: "https://whatsapp.com/channel/0029VbBj5b5GehEPNFo3nT2d", color: "#25D366" }
-    ]
 
     const inputVariants = {
         hidden: { opacity: 0, y: 20 },
@@ -158,31 +153,6 @@ const Contact = () => {
                                     </div>
                                 </motion.a>
                             ))}
-                        </div>
-
-                        {/* Social Links */}
-                        <div>
-                            <p className='text-gray-400 mb-4'>Follow me on:</p>
-                            <div className='flex gap-4'>
-                                {socialLinks.map((social, index) => (
-                                    <motion.a
-                                        key={social.label}
-                                        href={social.href}
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                        initial={{ opacity: 0, scale: 0 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        transition={{ delay: 0.5 + index * 0.1, type: "spring", stiffness: 200 }}
-                                        viewport={{ once: true }}
-                                        whileHover={{ scale: 1.15, y: -3 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className='w-12 h-12 rounded-full flex items-center justify-center bg-white/5 border border-white/10 hover:border-white/30 transition-all'
-                                        style={{ color: social.color }}
-                                    >
-                                        {social.icon}
-                                    </motion.a>
-                                ))}
-                            </div>
                         </div>
                     </motion.div>
 
@@ -289,18 +259,6 @@ const Contact = () => {
                     </motion.div>
                 </div>
 
-                {/* Footer */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className='mt-16 text-center'
-                >
-                    <p className='text-gray-500 text-sm'>
-                        © {new Date().getFullYear()} Gaurav Gautam. All rights reserved.
-                    </p>
-                </motion.div>
             </div>
         </section>
     )

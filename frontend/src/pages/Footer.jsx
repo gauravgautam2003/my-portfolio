@@ -9,12 +9,35 @@ const Footer = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
-    const socialLinks = [
-        { icon: <FaLinkedin />, label: "LinkedIn", href: "https://linkedin.com/in/gauravgautam", color: "#0077B5" },
-        { icon: <FaGithub />, label: "GitHub", href: "https://github.com/gauravgautam2003", color: "#ffffff" },
-        { icon: <FaWhatsapp />, label: "WhatsApp", href: "https://whatsapp.com/channel/0029VbBj5b5GehEPNFo3nT2d", color: "#25D366" }
-    ]
-
+const socials = [
+    { Icon: FaLinkedin, label: "LinkedIn", href: "https://linkedIn.com/in/" },
+    { Icon: FaGithub, label: "Github", href: "https://github.com/gauravgautam2003"},
+    { Icon: FaWhatsapp, label: "WhatsApp", href: "https://whatsapp.com/channel/0029VbBj5b5GehEPNFo3nT2d"},
+]
+    
+    const glowVariants = {
+        initial: {
+            scale: 1, y: 0,
+            filter: "drop-shadow(0 0 0 rgba(0, 0, 0, 0))"
+        },
+        hover: {
+            scale: 1.02, y: -3,
+            filter: "drop-shadow(0 0 8px rgba(13, 88, 204, 0.9)) drop-shadow(0 0 18px rgba(16, 185, 129, 0.8))",
+            transition: {
+                type: "spring",
+                stiffness: 300,
+                damping: 15
+            }
+        },
+        tap: {
+            scale: 95,
+            y: 0,
+            transition: {
+                duration: 0.08
+            }
+        }
+    }
+    
     const quickLinks = [
         { name: "Home", href: "#home" },
         { name: "About", href: "#about" },
@@ -49,7 +72,7 @@ const Footer = () => {
 
     return (
         <footer className='w-full bg-black relative overflow-hidden'>
-          <ParticlesBackground />
+            <ParticlesBackground />
             {/* Background Gradient */}
             <div className='absolute inset-0 pointer-events-none'>
                 <div className='absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#0b7def]/30 to-transparent' />
@@ -70,7 +93,7 @@ const Footer = () => {
                 >
                     {/* Brand Section */}
                     <motion.div variants={itemVariants} className='lg:col-span-2'>
-                        <motion.h3 
+                        <motion.h3
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5 }}
@@ -79,7 +102,7 @@ const Footer = () => {
                         >
                             Gaurav <span className='text-[#0b7def]'>Gautam</span>
                         </motion.h3>
-                        <motion.p 
+                        <motion.p
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ delay: 0.2, duration: 0.5 }}
@@ -88,31 +111,31 @@ const Footer = () => {
                         >
                             A passionate MERN Stack Developer dedicated to building modern, scalable, and user-friendly web applications. Let's create something amazing together.
                         </motion.p>
-                        
+
                         {/* Social Links */}
-                        <motion.div 
+                        <p className='text-gray-400 mb-3 max-w-md px-1'>Follow me on :</p>
+                        <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3, duration: 0.5 }}
                             viewport={{ once: true }}
                             className='flex gap-4'
                         >
-                            {socialLinks.map((social, index) => (
+                            {socials.map(({ Icon, label, href }) => (
                                 <motion.a
-                                    key={social.label}
-                                    href={social.href}
+                                    key={label}
+                                    href={href}
                                     target='_blank'
-                                    rel='noopener noreferrer'
-                                    initial={{ opacity: 0, scale: 0 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: 0.4 + index * 0.1, type: "spring", stiffness: 200 }}
-                                    viewport={{ once: true }}
-                                    whileHover={{ scale: 1.15, y: -3 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className='w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 hover:border-white/30 transition-all'
-                                    style={{ color: social.color }}
+                                    aria-label={label}
+                                    rel="noopener noreferrer"
+                                    variants={glowVariants}
+                                    initial="initial"
+                                    whileHover="hover"
+                                    whileTap="tab"
+                                    className=' border p-3 border-gray-300 bg-gray-900 rounded-full transition-colors'
+                                    style={{ color: Icon === FaGithub ? "#ffffff" : Icon === FaLinkedin ? "#0077B5" : "#25D366" }}
                                 >
-                                    {social.icon}
+                                    <Icon />
                                 </motion.a>
                             ))}
                         </motion.div>
@@ -120,7 +143,7 @@ const Footer = () => {
 
                     {/* Quick Links */}
                     <motion.div variants={itemVariants}>
-                        <motion.h4 
+                        <motion.h4
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2, duration: 0.5 }}
@@ -138,7 +161,7 @@ const Footer = () => {
                                     transition={{ delay: 0.3 + index * 0.05, duration: 0.4 }}
                                     viewport={{ once: true }}
                                 >
-                                    <a 
+                                    <a
                                         href={link.href}
                                         className='text-gray-400 hover:text-[#0b7def] transition-colors flex items-center gap-2 group'
                                     >
@@ -152,7 +175,7 @@ const Footer = () => {
 
                     {/* Contact Info */}
                     <motion.div variants={itemVariants}>
-                        <motion.h4 
+                        <motion.h4
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2, duration: 0.5 }}
@@ -197,16 +220,16 @@ const Footer = () => {
                 </motion.div>
 
                 {/* Divider */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, scaleX: 0 }}
                     whileInView={{ opacity: 1, scaleX: 1 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
                     viewport={{ once: true }}
-                    className='w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-12' 
+                    className='w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-12'
                 />
 
                 {/* Bottom Section */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 0.5 }}
@@ -216,7 +239,7 @@ const Footer = () => {
                     <p className='text-gray-500 text-sm'>
                         © {new Date().getFullYear()} Gaurav Gautam. All rights reserved.
                     </p>
-                    
+
                     <div className='flex items-center gap-4'>
                         <span className='text-gray-500 text-sm'>
                             Made with <span className='text-red-500'>❤</span> using MERN Stack
