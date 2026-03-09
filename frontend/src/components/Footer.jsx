@@ -3,18 +3,19 @@ import { motion } from 'framer-motion'
 import { FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa"
 import { FiArrowUp } from "react-icons/fi"
 import ParticlesBackground from "./ParticlesBackground"
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
-const socials = [
-    { Icon: FaLinkedin, label: "LinkedIn", href: "https://linkedIn.com/in/" },
-    { Icon: FaGithub, label: "Github", href: "https://github.com/gauravgautam2003"},
-    { Icon: FaWhatsapp, label: "WhatsApp", href: "https://whatsapp.com/channel/0029VbBj5b5GehEPNFo3nT2d"},
-]
-    
+    const socials = [
+        { Icon: FaLinkedin, label: "LinkedIn", href: "https://linkedIn.com/in/" },
+        { Icon: FaGithub, label: "Github", href: "https://github.com/gauravgautam2003" },
+        { Icon: FaWhatsapp, label: "WhatsApp", href: "https://whatsapp.com/channel/0029VbBj5b5GehEPNFo3nT2d" },
+    ]
+
     const glowVariants = {
         initial: {
             scale: 1, y: 0,
@@ -37,15 +38,8 @@ const socials = [
             }
         }
     }
-    
-    const quickLinks = [
-        { name: "Home", href: "/home" },
-        { name: "About", href: "/about" },
-        { name: "Skills", href: "/skills" },
-        { name: "Projects", href: "/projects/:id" },
-        { name: "Experience", href: "/experience" },
-        { name: "Contact", href: "/contact" }
-    ]
+
+
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -152,24 +146,13 @@ const socials = [
                         >
                             Quick Links
                         </motion.h4>
-                        <ul className='space-y-3'>
-                            {quickLinks.map((link, index) => (
-                                <motion.li
-                                    key={link.name}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.3 + index * 0.05, duration: 0.4 }}
-                                    viewport={{ once: true }}
-                                >
-                                    <a
-                                        href={link.href}
-                                        className='text-gray-400 hover:text-[#0b7def] transition-colors flex items-center gap-2 group'
-                                    >
-                                        <span className='w-1.5 h-1.5 rounded-full bg-[#0b7def] opacity-0 group-hover:opacity-100 transition-opacity' />
-                                        {link.name}
-                                    </a>
-                                </motion.li>
-                            ))}
+                        <ul className='cursor-pointer text-sm text-gray-400' >
+                            <li><Link to="/" className='hover:text-gray-300 transition-colors'>Home</Link></li>
+                            <li><Link to="/about" className='hover:text-gray-300 transition-colors'>About</Link></li>
+                            <li><Link to="/experience" className='hover:text-gray-300 transition-colors'>Experience</Link></li>
+                            <li><Link to="/skills" className='hover:text-gray-300 transition-colors'>Skills</Link></li>
+                            <li><Link to="/projects/:id" className='hover:text-gray-300 transition-colors'>Project</Link></li>
+                            <li><Link to="/contact" className='hover:text-gray-300 transition-colors'>Contact</Link></li>
                         </ul>
                     </motion.div>
 
