@@ -1,16 +1,29 @@
 import React, { useEffect, useRef, useState } from 'react'
-import OverlayMenu from "./OverlayMenu"
+
 import Logo from "../assets/Logo.png"
 import { FiMenu } from "react-icons/fi"
+import { Link } from 'react-router-dom'
+import OverlayMenu from './OverlayMenu'
 
 const Navbar = () => {
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [visible, setVisible] = useState(true);
     const [forceVisible, setForceVisible] = useState(false);
+    const [isMobile, setIsMobile] = useState(false)
 
     const lastScrollY = useRef(0);
     const timerId = useRef(null);
+
+    useEffect(() => {
+        // Check if mobile on mount and resize
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 1024);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, [])
 
     useEffect(() => {
         const homeSection = document.querySelector("#home");
@@ -41,9 +54,6 @@ const Navbar = () => {
             } else {
                 setVisible(true);
                 if (timerId.current) clearTimeout(timerId.current);
-                timerId.current = setTimeout(() => {
-                    setVisible(false);
-                }, 3000)
             }
             lastScrollY.current = currentScrollY;
         }
@@ -55,30 +65,51 @@ const Navbar = () => {
         }
     }, [forceVisible])
 
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    const closeMenu = () => {
+        setMenuOpen(false);
+    };
+
     return (
         <>
-            <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-6 py-4 z-50 transition-transform  duration-300 ${visible ? "translate-y-0" : "-translate-y-full"}`}>
-                <div className='flex items-center space-x-2'>
-                    <img src={Logo} alt="logo" className='w-8 h-8' />
-                    <div className='text-2xl font-bold text-white hidden sm:block'>Gaurav Gautam</div>
-                </div>
-                <div className='block lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2'>
-                    <button onClick={() => setMenuOpen(true)} className='text-white text-3xl focus:outline-none' aria-label='open Menu'>
-                        <FiMenu />
-                    </button>
-                </div>
-                <div className='hidden lg:block'>
-                    <a href="#contact" className='bg-gradient-to-r from-purple-500 to-gray-500 text-white px-5 py-2 rounded-full font-medium shadow-lg'>
-                        Reach Out
-                    </a>
+            <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 sm:px-6 py-3 z-50 transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-full"}`} style={{background: "rgba(0,0,0,0.8)", backdropFilter: "blur(10px)"}}>
+                <div className='flex items-center w-full justify-between px-4 sm:px-8'>
 
+                    <div className='flex items-center space-x-2'>
+                        <img src={Logo} alt="logo" className='w-8 h-8' />
+                        <div className='text-xl sm:text-2xl font-bold text-white hidden sm:block'>Gaurav Gautam</div>
+                    </div>
+
+                    {/* Desktop Menu - Hidden on mobile/tablet */}
+                    <ul className='hidden lg:flex space-x-8 font-semibold cursor-pointer text-white' >
+                        <li><Link to="/" className='hover:text-gray-300 transition-colors'>Home</Link></li>
+                        <li><Link to="/about" className='hover:text-gray-300 transition-colors'>About</Link></li>
+                        <li><Link to="/experience" className='hover:text-gray-300 transition-colors'>Experience</Link></li>
+                        <li><Link to="/skills" className='hover:text-gray-300 transition-colors'>Skills</Link></li>
+                        <li><Link to="/projects/:id" className='hover:text-gray-300 transition-colors'>Project</Link></li>
+                        <li><Link to="/contact" className='hover:text-gray-300 transition-colors'>Contact</Link></li>
+                    </ul>
+
+                    {/* Mobile Hamburger Button - Hidden on desktop */}
+                    <button 
+                        className='lg:hidden text-white p-2 cursor-pointer'
+                        onClick={toggleMenu}
+                        aria-label="Open menu"
+                    >
+                        <FiMenu className="w-7 h-7" />
+                    </button>
                 </div>
 
             </nav>
 
-            <OverlayMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+            {/* Overlay Menu for Mobile */}
+            <OverlayMenu isOpen={menuOpen} onClose={closeMenu} />
         </>
     )
 }
 
 export default Navbar
+

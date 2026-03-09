@@ -1,9 +1,11 @@
 import express from "express";
-import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import ENV from "./config/env.js";
 import cors from "cors";
-dotenv.config({quiet : true});
 
-const PORT = process.env.PORT;
+const PORT = ENV.PORT;
+const NODE_ENV = ENV.NODE_ENV;
+
 const app = express();
 
 app.use(express.json());
@@ -13,9 +15,12 @@ app.use(cors({
 }));
 
 app.get("/", (req, res) => {
-    res.status(200).json({message: "server is running"});
+    res.status(200).json({ message: "server is running" });
 })
 
-app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
-});
+if (NODE_ENV === "development") {
+    connectDB();
+    app.listen(PORT, () => {
+        console.log(`http://localhost:${PORT}`);
+    })
+}

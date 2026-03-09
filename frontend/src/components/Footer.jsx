@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa"
 import { FiArrowUp } from "react-icons/fi"
-import ParticlesBackground from "../components/ParticlesBackground"
+import ParticlesBackground from "./ParticlesBackground"
 
 const Footer = () => {
     const scrollToTop = () => {
