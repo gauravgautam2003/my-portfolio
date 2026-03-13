@@ -7,7 +7,7 @@ const ENV_URI = {
     MONGODB_URL : process.env.MONGODB_URL,
     MY_EMAIL : process.env.MY_EMAIL,
     MY_PASSWORD : process.env.MY_PASSWORD,
-    SECREATE_TOKEN_KEY : process.env.SECREATE_TOKEN_KEY
+    SECRET_TOKEN_KEY : process.env.SECRET_TOKEN_KEY
 }
 
 export default ENV_URI;

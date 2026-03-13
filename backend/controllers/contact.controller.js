@@ -1,8 +1,6 @@
 import Contact from "../models/Contact.model.js";
 import nodemailer from "nodemailer";
 import ENV from "../config/env.js";
-import generateToken from "../config/token.js";
-
 
 const sendMessage = async (req, res) => {
 
@@ -27,7 +25,6 @@ const sendMessage = async (req, res) => {
             message
         });
 
-        newContact.save();
         const info = await transporter.sendMail({
             from: email,
             to: ENV.MY_EMAIL,
@@ -60,7 +57,7 @@ const sendMessage = async (req, res) => {
                 `
         });
 
-        const token = generateToken({ userId : email._id });
+        await newContact.save();
 
         res.status(200).json({
             message: "Message sent and auto reply delivered",

@@ -3,6 +3,7 @@ import connectDB from "./config/db.js";
 import ENV from "./config/env.js";
 // import cors from "cors";
 import contactRouter from "./routes/contact.routes.js";
+import errorMiddleware from "./middleware/error.middleware.js";
 
 const PORT = ENV.PORT;
 const NODE_ENV = ENV.NODE_ENV;
@@ -18,6 +19,7 @@ app.use(express.urlencoded({extended : true}))
 // }));
 
 app.use("/api/auth", contactRouter);
+app.use(errorMiddleware);
 
 app.get("/contact", (req,res)=>{
    res.send("API working");
@@ -31,7 +33,7 @@ const start = async () => {
             })
         }
     }catch(error){
-        console.log("server error", + error);
+        console.log("server error", error);
     }
 }
 
