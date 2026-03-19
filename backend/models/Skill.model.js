@@ -33,7 +33,7 @@ const skillSchema = new mongoose.Schema({
         },
         skills: {
             type: String,
-            default: ["Git","GitHub","vscode"],
+            default: ["Git", "GitHub", "vscode"],
             required: true,
         }
     },

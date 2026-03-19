@@ -4,9 +4,10 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
-import avator from "../assets/avator.png"
+
 
 const About = () => {
+
     const personalInfo = [
         { label: "Name", value: "Gaurav Gautam" },
         { label: "Location", value: "India" },
@@ -134,7 +135,7 @@ const About = () => {
                                 <FaLinkedin style={{ color: "#0077B5" }} />
                             </motion.a>
                             <motion.a
-                            
+
                                 variants={glowVariants}
                                 initial="initial"
                                 whileHover="hover"

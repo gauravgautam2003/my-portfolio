@@ -1,34 +1,45 @@
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import React, { useState, useContext } from "react";
+import { motion } from "framer-motion";
 import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaPaperPlane } from "react-icons/fa"
+import { PortfolioContext } from "../context/PortfolioContext";
+import { toast, ToastContainer } from "react-toastify";
 
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-    })
-    const [isSubmitting, setIsSubmitting] = useState(false)
+    const { name, email, subject, message, setName, setEmail, setSubject, setMessage, contactFormHandler } = useContext(PortfolioContext);
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!name || !email || !subject || !message) {
+        toast.error("Please fill all requirements!");
+        return;
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setIsSubmitting(true)
-        // Simulate form submission
+    setIsSubmitting(true);
+    setLoading(true);
+
+    try {
+        await contactFormHandler();
+        // Clear form fields after successful submission
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
         setTimeout(() => {
-            setIsSubmitting(false)
-            setFormData({ name: '', email: '', subject: '', message: '' })
-            alert('Message sent successfully!')
-        }, 2000)
+            setIsSubmitting(false);
+        }, 2000); // Keep the success message for a while
+    } catch (error) {
+        setIsSubmitting(false);
     }
+
+    setIsSubmitting(false);
+    setLoading(false);
+}
 
     const contactInfo = [
         {
@@ -70,8 +81,9 @@ const Contact = () => {
 
     return (
         <section id='contact' className='w-full min-h-screen bg-black relative overflow-hidden py-20'>
+                <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark"/>
             {/* Background Effects */}
-            
+
             <div className='absolute inset-0 pointer-events-none'>
                 <div className='absolute top-40 -right-32 w-[50vw] h-[50vh] rounded-full bg-gradient-to-r from-[#4b3aff] via-[#00bf8f] to-[#1cd8d2] opacity-15 blur-[120px]' />
                 <div className='absolute bottom-40 -left-32 w-[50vw] h-[50vh] rounded-full bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2] opacity-20 blur-[120px]' />
@@ -90,21 +102,21 @@ const Contact = () => {
                     viewport={{ once: true }}
                     className='text-center mb-16'
                 >
-                    <motion.h2 
+                    <motion.h2
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className='text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2'
+                        className='text-xl md:text-3xl lg:text-4xl font-bold text-white mb-2'
                     >
                         Get In <span className='bg-clip-text text-white'>Touch</span>
                     </motion.h2>
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.3, duration: 0.6 }}
-                        className='max-w-42 h-1 bg-gradient-to-r from-[#0b7def] to-[#00bf8f] mx-auto rounded-full' 
+                        className='max-w-42 h-1 bg-gradient-to-r from-[#0b7def] to-[#00bf8f] mx-auto rounded-full'
                     />
-                    <motion.p 
+                    <motion.p
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 0.8 }}
@@ -170,7 +182,7 @@ const Contact = () => {
                             whileInView="visible"
                             viewport={{ once: true }}
                         >
-                            <motion.h3 
+                            <motion.h3
                                 variants={inputVariants}
                                 className='text-xl font-bold text-white mb-6'
                             >
@@ -183,8 +195,8 @@ const Contact = () => {
                                     <input
                                         type='text'
                                         name='name'
-                                        value={formData.name}
-                                        onChange={handleChange}
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
                                         required
                                         placeholder='John Doe'
                                         className='w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-[#0b7def]/50 focus:outline-none focus:ring-2 focus:ring-[#0b7def]/20 transition-all'
@@ -196,8 +208,8 @@ const Contact = () => {
                                     <input
                                         type='email'
                                         name='email'
-                                        value={formData.email}
-                                        onChange={handleChange}
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                         required
                                         placeholder='john@example.com'
                                         className='w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-[#0b7def]/50 focus:outline-none focus:ring-2 focus:ring-[#0b7def]/20 transition-all'
@@ -209,8 +221,8 @@ const Contact = () => {
                                     <input
                                         type='text'
                                         name='subject'
-                                        value={formData.subject}
-                                        onChange={handleChange}
+                                        value={subject}
+                                        onChange={(e) => setSubject(e.target.value)}
                                         required
                                         placeholder='Project Inquiry'
                                         className='w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-[#0b7def]/50 focus:outline-none focus:ring-2 focus:ring-[#0b7def]/20 transition-all'
@@ -221,8 +233,8 @@ const Contact = () => {
                                     <label className='block text-gray-400 text-sm mb-2'>Message</label>
                                     <textarea
                                         name='message'
-                                        value={formData.message}
-                                        onChange={handleChange}
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
                                         required
                                         rows={4}
                                         placeholder="Tell me about your project..."

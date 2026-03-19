@@ -61,7 +61,6 @@ const sendMessage = async (req, res) => {
 
         res.status(200).json({
             message: "Message sent and auto reply delivered",
-            token: token,
             info,
             newContact
         });
