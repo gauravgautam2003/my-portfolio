@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 import Logo from "../assets/Logo.png"
-import { FiMenu } from "react-icons/fi"
+import { FiMenu, FiSettings } from "react-icons/fi"
 import { Link } from 'react-router-dom'
 import OverlayMenu from './OverlayMenu'
 
@@ -84,13 +84,19 @@ const Navbar = () => {
                     </div>
 
                     {/* Desktop Menu - Hidden on mobile/tablet */}
-                    <ul className='hidden lg:flex space-x-8 font-semibold cursor-pointer text-white' >
+                    <ul className='hidden lg:flex items-center space-x-8 font-semibold cursor-pointer text-white' >
                         <li><Link to="/" className='hover:text-gray-300 transition-colors'>Home</Link></li>
                         <li><Link to="/about" className='hover:text-gray-300 transition-colors'>About</Link></li>
                         <li><Link to="/experience" className='hover:text-gray-300 transition-colors'>Experience</Link></li>
                         <li><Link to="/skills" className='hover:text-gray-300 transition-colors'>Skills</Link></li>
-                        <li><Link to="/projects/:id" className='hover:text-gray-300 transition-colors'>Project</Link></li>
+                        <li><Link to="/projects" className='hover:text-gray-300 transition-colors'>Projects</Link></li>
                         <li><Link to="/contact" className='hover:text-gray-300 transition-colors'>Contact</Link></li>
+                        <li>
+                            <Link to="/admin" title="Admin Panel"
+                                className='flex items-center justify-center w-8 h-8 rounded-lg border border-white/20 bg-white/5 hover:bg-[#0b7def]/20 hover:border-[#0b7def]/50 transition-all'>
+                                <FiSettings className='w-4 h-4 text-gray-300 hover:text-[#0b7def]' />
+                            </Link>
+                        </li>
                     </ul>
 
                     {/* Mobile Hamburger Button - Hidden on desktop */}

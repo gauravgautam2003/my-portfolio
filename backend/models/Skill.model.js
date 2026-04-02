@@ -1,43 +1,30 @@
 import mongoose from "mongoose";
 
-const skillSchema = new mongoose.Schema({
-    frontend: {
-        icon: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        skills: {
-            type: String,
-            default: ["HTML", "CSS", "Tailwind.css", "React.js", "javascript"],
-            required: true,
-        }
-    },
-    backend: {
-        icon: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        skills: {
-            type: String,
-            default: ["Node.js", "Express.js", "Mongodb"],
-            required: true,
-        }
-    },
-    toolsAndTechnology: {
-        icon: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        skills: {
-            type: String,
-            default: ["Git", "GitHub", "vscode"],
-            required: true,
-        }
-    },
+// Based on Skills.jsx frontend data structure:
+// skillCategories[ { title, skills[ { name, color } ] } ]
+// Categories: "Frontend Development", "Backend Development", "Tools & Technologies"
 
+const skillSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    color: {
+        type: String,       // hex color used for icon glow, e.g. "#61DAFB"
+        default: "#ffffff",
+    },
+    category: {
+        type: String,
+        required: true,
+        enum: ["Frontend Development", "Backend Development", "Tools & Technologies"],
+    },
+    order: {
+        type: Number,       // for custom ordering within a category
+        default: 0,
+    },
+}, {
+    timestamps: true,
 });
 
 const Skill = mongoose.model("Skill", skillSchema);

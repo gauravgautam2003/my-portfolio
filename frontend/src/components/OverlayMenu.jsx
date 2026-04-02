@@ -9,12 +9,13 @@ const OverlayMenu = ({isOpen, onClose}) => {
     const origin = isMobile ? "95% 8%" : "50% 8%";
 
     const menuItems = [
-        { to: "/", label: "Home" },
-        { to: "/about", label: "About" },
-        { to: "/experience", label: "Experience" },
-        { to: "/skills", label: "Skills" },
-        { to: "/projects/:id", label: "Project" },
-        { to: "/contact", label: "Contact" },
+        { to: "/",          label: "Home" },
+        { to: "/about",     label: "About" },
+        { to: "/experience",label: "Experience" },
+        { to: "/skills",    label: "Skills" },
+        { to: "/projects",  label: "Projects" },
+        { to: "/contact",   label: "Contact" },
+        { to: "/admin",     label: "⚙ Admin" },
     ];
 
     const linkVariants = {

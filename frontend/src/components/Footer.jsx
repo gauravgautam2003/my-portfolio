@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa"
-import { FiArrowUp } from "react-icons/fi"
+import { FiArrowUp, FiSettings } from "react-icons/fi"
 import ParticlesBackground from "./ParticlesBackground"
 import { Link } from 'react-router-dom';
 
@@ -146,13 +146,30 @@ const Footer = () => {
                         >
                             Quick Links
                         </motion.h4>
-                        <ul className='cursor-pointer text-sm text-gray-400'        onClick={scrollToTop} >
-                            <li><Link to="/" className='hover:text-gray-300 transition-colors'>Home</Link></li>
-                            <li><Link to="/about" className='hover:text-gray-300 transition-colors'>About</Link></li>
-                            <li><Link to="/experience" className='hover:text-gray-300 transition-colors'>Experience</Link></li>
-                            <li><Link to="/skills" className='hover:text-gray-300 transition-colors'>Skills</Link></li>
-                            <li><Link to="/projects/:id" className='hover:text-gray-300 transition-colors'>Project</Link></li>
-                            <li><Link to="/contact" className='hover:text-gray-300 transition-colors'>Contact</Link></li>
+                        <ul className='space-y-2 text-sm text-gray-400'>
+                            {[
+                                { to: '/',           label: 'Home' },
+                                { to: '/about',      label: 'About' },
+                                { to: '/experience', label: 'Experience' },
+                                { to: '/skills',     label: 'Skills' },
+                                { to: '/projects',   label: 'Projects' },
+                                { to: '/contact',    label: 'Contact' },
+                            ].map(({ to, label }) => (
+                                <li key={to}>
+                                    <Link to={to} onClick={scrollToTop}
+                                        className='hover:text-[#0b7def] transition-colors flex items-center gap-1.5 group'>
+                                        <span className='w-1 h-1 rounded-full bg-[#0b7def] opacity-0 group-hover:opacity-100 transition-opacity' />
+                                        {label}
+                                    </Link>
+                                </li>
+                            ))}
+                            <li>
+                                <Link to='/admin' onClick={scrollToTop}
+                                    className='flex items-center gap-2 mt-3 px-3 py-1.5 rounded-lg bg-[#0b7def]/10 border border-[#0b7def]/20 text-[#0b7def] hover:bg-[#0b7def]/20 transition-all w-fit text-xs font-medium'>
+                                    <FiSettings size={11} />
+                                    Admin Panel
+                                </Link>
+                            </li>
                         </ul>
                     </motion.div>
 
@@ -227,6 +244,11 @@ const Footer = () => {
                         <span className='text-gray-500 text-sm'>
                             Made with <span className='text-red-500'>❤</span> using MERN Stack
                         </span>
+                        <Link to='/admin'
+                            className='flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-500 hover:text-[#0b7def] hover:border-[#0b7def]/30 transition-all text-xs'>
+                            <FiSettings size={11} />
+                            Admin
+                        </Link>
                     </div>
                 </motion.div>
 

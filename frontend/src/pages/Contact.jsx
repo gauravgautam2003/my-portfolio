@@ -32,13 +32,12 @@ const Contact = () => {
         setMessage("");
         setTimeout(() => {
             setIsSubmitting(false);
+            setLoading(false);
         }, 2000); // Keep the success message for a while
     } catch (error) {
         setIsSubmitting(false);
+        setLoading(false);
     }
-
-    setIsSubmitting(false);
-    setLoading(false);
 }
 
     const contactInfo = [
