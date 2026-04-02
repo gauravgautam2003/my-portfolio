@@ -9,6 +9,7 @@ import profileRouter    from "./routes/profile.routes.js";
 import projectRouter    from "./routes/project.routes.js";
 import experienceRouter from "./routes/experience.routes.js";
 import skillRouter      from "./routes/skill.routes.js";
+import aiRouter         from "./routes/ai.routes.js";
 import errorMiddleware  from "./middleware/error.middleware.js";
 
 const app = express();
@@ -64,6 +65,7 @@ app.use("/api/user",      profileRouter);
 app.use("/api/projects",  projectRouter);
 app.use("/api/experiences", experienceRouter);
 app.use("/api/skills",    skillRouter);
+app.use("/api/ai",        aiRouter);
 
 // ─── 404 Handler ────────────────────────────────────────────────────────────
 app.use((req, res) => {

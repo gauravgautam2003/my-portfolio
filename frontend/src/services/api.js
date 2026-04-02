@@ -93,4 +93,10 @@ export const contactAPI = {
     send: (data) => api.post("/api/contact", data),
 };
 
+// ─── AI API ───────────────────────────────────────────────────────────────────
+export const aiAPI = {
+    /** Enhance text via Gemini: { text, contextType } */
+    enhance: (data) => api.post("/api/ai/enhance", data),
+};
+
 export default api;

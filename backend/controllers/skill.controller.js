@@ -22,6 +22,7 @@ const getAllSkills = async (req, res) => {
 
         // Convert to array format matching Skills.jsx skillCategories
         const categories = [
+            "Languages",
             "Frontend Development",
             "Backend Development",
             "Tools & Technologies",

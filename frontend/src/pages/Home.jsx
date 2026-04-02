@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io";
+import { PortfolioContext } from '../context/PortfolioContext';
 import avator from "../assets/avator.png"
 
 
@@ -37,7 +38,14 @@ const glowVariants = {
 }
 
 const Home = () => {
-    const roles = useMemo(() => ["Full Stack Developer", "MERN Stack Developer", "Software Engineer"], []);
+    const { profile } = React.useContext(PortfolioContext);
+
+    // If professional title exists, format it, else use generic fallback roles
+    const roles = useMemo(() => {
+        if (profile?.professionalTitle) return [profile.professionalTitle.trim(), "Software Engineer", "Web Developer"];
+        return ["Full Stack Developer", "MERN Stack Developer", "Software Engineer"];
+    }, [profile]);
+
     const [index, setIndex] = useState(0);
     const [subIndex, setSubIndex] = useState(0);
     const [deleting, setDeleting] = useState(false);
@@ -57,6 +65,13 @@ const Home = () => {
 
         return () => clearTimeout(timeout);
     }, [subIndex, index, deleting, roles])
+
+    // Match the social links to the specific profile data.
+    const socials = [
+        { Icon: FaLinkedin, label: "LinkedIn", href: profile?.linkedin || "#" },
+        { Icon: FaGithub, label: "Github", href: profile?.github || "#" },
+        { Icon: IoLogoWhatsapp, label: "WhatsApp", href: profile?.whatsapp || "#" },
+    ].filter(s => s.href !== "#" && s.href !== "");
 
 
     return (
@@ -80,20 +95,20 @@ const Home = () => {
                                 transition={{ duration: 0.6 }}
                             >
                                 <span>
-                                    {roles[index].substring(0, subIndex)}
+                                    {roles[index]?.substring(0, subIndex)}
                                 </span>
                                 <span className='inline-block w-[2px] ml-1 bg-white animate-pulse align-middle' style={{ height: "1em" }}>
 
                                 </span>
                             </motion.div>
-                            <motion.h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#0b7def] via-[#f08409] to-[#39037b] drop-shadow-lg '
+                            <motion.h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#0b7def] via-[#f08409] to-[#39037b] drop-shadow-lg '
                                 initial={{ opacity: 0, y: 12 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 1 }}
                             >
                                 Hello, I'm
                                 <br />
-                                <span className='text-white  font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl lg:whitespace-nowrap '>Gaurav Gautam</span>
+                                <span className='text-white font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl lg:whitespace-nowrap '>{profile?.name || "Developer"}</span>
                             </motion.h1>
 
                             <motion.p className='mt-6 text-base sm:text-md md:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0'
@@ -101,7 +116,7 @@ const Home = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 0.8 }}
                             >
-                                I turn complex ideas into seamless, high-impact web experiences - buiding modern, scalable and lightning-fast applications that make a difference.
+                                {profile?.about || "I turn complex ideas into seamless, high-impact web experiences - building modern, scalable and lightning-fast applications that make a difference."}
                             </motion.p>
 
                             <motion.div className='mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6'

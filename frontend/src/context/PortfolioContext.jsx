@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 import { toast } from "react-toastify";
-import { profileAPI, projectsAPI, experiencesAPI, skillsAPI, contactAPI } from "../services/api.js";
+import { profileAPI, projectsAPI, experiencesAPI, skillsAPI, contactAPI, aiAPI } from "../services/api.js";
 
 const PortfolioContext = createContext();
 
@@ -227,6 +227,20 @@ const PortfolioProvider = ({ children }) => {
         fetchSkills();
     }, [fetchProfile, fetchProjects, fetchExperiences, fetchSkills]);
 
+    // ════════════════════════════════════════════════════════════════════
+    // AI ENHANCEMENT
+    // ════════════════════════════════════════════════════════════════════
+    const enhanceText = async (text, contextType) => {
+        try {
+            const res = await aiAPI.enhance({ text, contextType });
+            toast.success("AI Enhancement applied! ✨");
+            return res.data.enhancedText;
+        } catch (err) {
+            toast.error(err.response?.data?.message || "AI Enhancement failed.");
+            throw err;
+        }
+    };
+
     const value = {
         // Contact form
         name, setName, email, setEmail, subject, setSubject, message, setMessage,
@@ -244,6 +258,9 @@ const PortfolioProvider = ({ children }) => {
 
         // Skills
         skills, skillCategories, loadingSkills, fetchSkills, createSkill, deleteSkill,
+        
+        // AI 
+        enhanceText,
     };
 
     return (

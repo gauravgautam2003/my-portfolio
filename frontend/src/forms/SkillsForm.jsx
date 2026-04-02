@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { FaPlus, FaTrash } from 'react-icons/fa'
 import { PortfolioContext } from '../context/PortfolioContext'
 
-const SKILL_CATEGORIES = ['Frontend Development', 'Backend Development', 'Tools & Technologies']
+const SKILL_CATEGORIES = ['Languages', 'Frontend Development', 'Backend Development', 'Tools & Technologies']
 
 const QUICK_COLORS = [
     '#61DAFB', '#F7DF1E', '#3178C6', '#06B6D4', '#0055FF', '#E34F26',
@@ -12,11 +12,23 @@ const QUICK_COLORS = [
 ]
 
 const SkillsForm = () => {
-    const { skills, skillCategories, createSkill, deleteSkill, loadingSkills } = useContext(PortfolioContext)
+    const { skills, skillCategories, createSkill, deleteSkill, loadingSkills, enhanceText } = useContext(PortfolioContext)
 
     const [form, setForm] = useState({ name: '', color: '#61DAFB', category: 'Frontend Development' })
     const [saving, setSaving] = useState(false)
     const [deleting, setDeleting] = useState(null)
+    const [enhancingText, setEnhancingText] = useState(false)
+
+    const handleEnhance = async () => {
+        if (!form.name) return;
+        setEnhancingText(true);
+        try {
+            const fixedName = await enhanceText(form.name, "skill");
+            if (fixedName) setForm(p => ({ ...p, name: fixedName }));
+        } finally {
+            setEnhancingText(false);
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -42,7 +54,15 @@ const SkillsForm = () => {
 
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                     <div>
-                        <label className='block text-gray-400 text-sm mb-1'>Skill Name *</label>
+                        <div className="flex justify-between items-end mb-1">
+                            <label className='block text-gray-400 text-sm'>Skill Name *</label>
+                            {form.name && (
+                                <button type="button" onClick={handleEnhance} disabled={enhancingText}
+                                    className="text-xs flex items-center gap-1 text-[#0b7def] hover:text-[#00bf8f] transition-colors disabled:opacity-50">
+                                    {enhancingText ? <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1 }} className="w-3 h-3 border border-current border-t-transparent rounded-full" /> : "✨"} AI Fix
+                                </button>
+                            )}
+                        </div>
                         <input value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} required
                             placeholder='e.g. React.js'
                             className='w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:border-[#0b7def]/50 focus:outline-none text-sm' />

@@ -33,7 +33,7 @@ const TagInput = ({ tags, setTags, placeholder = 'Type and press Enter...' }) =>
 const emptyForm = { title: '', description: '', category: 'Full Stack', github: '', liveDemo: '' }
 
 const ProjectForm = () => {
-    const { projects, createProject, updateProject, deleteProject, loadingProjects } = useContext(PortfolioContext)
+    const { projects, createProject, updateProject, deleteProject, loadingProjects, enhanceText } = useContext(PortfolioContext)
     const fileRef = useRef()
 
     const [form, setForm] = useState(emptyForm)
@@ -43,6 +43,18 @@ const ProjectForm = () => {
     const [editId, setEditId] = useState(null)
     const [saving, setSaving] = useState(false)
     const [deleting, setDeleting] = useState(null)
+    const [enhancingText, setEnhancingText] = useState(false)
+
+    const handleEnhance = async () => {
+        if (!form.description) return;
+        setEnhancingText(true);
+        try {
+            const betterDesc = await enhanceText(form.description, "description");
+            if (betterDesc) setForm(p => ({ ...p, description: betterDesc }));
+        } finally {
+            setEnhancingText(false);
+        }
+    };
 
     const resetForm = () => {
         setForm(emptyForm)
@@ -140,7 +152,15 @@ const ProjectForm = () => {
                 </div>
 
                 <div>
-                    <label className='block text-gray-400 text-sm mb-1'>Description *</label>
+                    <div className="flex justify-between items-end mb-1">
+                        <label className='block text-gray-400 text-sm'>Description *</label>
+                        {form.description && (
+                            <button type="button" onClick={handleEnhance} disabled={enhancingText}
+                                className="text-xs flex items-center gap-1 text-[#0b7def] hover:text-[#00bf8f] transition-colors disabled:opacity-50">
+                                {enhancingText ? <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1 }} className="w-3 h-3 border border-current border-t-transparent rounded-full" /> : "✨"} AI Enhance
+                            </button>
+                        )}
+                    </div>
                     <textarea rows={3} value={form.description} onChange={e => setForm(p => ({ ...p, description: e.target.value }))} required
                         placeholder='Describe what this project does...'
                         className='w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:border-[#0b7def]/50 focus:outline-none resize-none text-sm' />

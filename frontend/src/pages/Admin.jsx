@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaUser, FaProjectDiagram, FaBriefcase, FaCode, FaChevronRight } from 'react-icons/fa'
 import { ToastContainer } from 'react-toastify'
+import { Link } from 'react-router-dom'
 import ProfileForm from '../forms/ProfileForm'
 import ProjectForm from '../forms/ProjectForm'
 import ExperienceFrom from '../forms/ExperienceFrom'
@@ -68,13 +69,18 @@ const Admin = () => {
 
                         {/* Quick Nav */}
                         <div className='mt-4 bg-white/3 border border-white/10 rounded-2xl p-4'>
-                            <p className='text-gray-500 text-xs font-medium mb-3 uppercase tracking-widest'>Quick Links</p>
-                            {['/', '/about', '/projects', '/skills', '/experience', '/contact'].map(path => (
-                                <a key={path} href={path} target='_blank' rel='noopener noreferrer'
-                                    className='block text-gray-400 hover:text-[#0b7def] text-xs py-1.5 transition-colors'>
-                                    → {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
-                                </a>
-                            ))}
+                            <p className='text-gray-500 text-xs font-semibold mb-3 uppercase tracking-widest px-1'>Quick Links</p>
+                            <div className='space-y-1'>
+                                {['/', '/about', '/projects', '/skills', '/experience', '/contact'].map(path => (
+                                    <Link key={path} to={path}
+                                        className='group flex items-center justify-between px-2 py-2 rounded-lg text-gray-400 hover:text-[#0b7def] hover:bg-white/5 text-sm transition-all duration-300'>
+                                        <span className='flex items-center gap-2 relative'>
+                                            <span className='w-1 h-1 rounded-full bg-gray-600 group-hover:bg-[#0b7def] transition-colors'></span>
+                                            {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
+                                        </span>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
                     </motion.aside>
 

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 // Based on Skills.jsx frontend data structure:
 // skillCategories[ { title, skills[ { name, color } ] } ]
-// Categories: "Frontend Development", "Backend Development", "Tools & Technologies"
+// Categories: "Languages", "Frontend Development", "Backend Development", "Tools & Technologies"
 
 const skillSchema = new mongoose.Schema({
     name: {
@@ -17,7 +17,7 @@ const skillSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        enum: ["Frontend Development", "Backend Development", "Tools & Technologies"],
+        enum: ["Languages", "Frontend Development", "Backend Development", "Tools & Technologies"],
     },
     order: {
         type: Number,       // for custom ordering within a category

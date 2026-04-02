@@ -105,16 +105,10 @@ const Contact = () => {
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className='text-xl md:text-3xl lg:text-4xl font-bold text-white mb-2'
+                        className='text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4'
                     >
                         Get In <span className='bg-clip-text text-white'>Touch</span>
                     </motion.h2>
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.3, duration: 0.6 }}
-                        className='max-w-42 h-1 bg-gradient-to-r from-[#0b7def] to-[#00bf8f] mx-auto rounded-full'
-                    />
                     <motion.p
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
