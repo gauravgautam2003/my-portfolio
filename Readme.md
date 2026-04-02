@@ -94,7 +94,6 @@ PORTFOLIO APP/
 - **Contact Form**: Functional contact form with EmailJS
 - **Project Showcase**: Display portfolio projects
 - **Skills Display**: Visual skills representation
-- **Testimonials**: Client/employer testimonials section
 - **Experience Timeline**: Work experience display
 
 ### Backend Features
