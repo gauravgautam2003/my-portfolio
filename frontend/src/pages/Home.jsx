@@ -89,7 +89,7 @@ const Home = () => {
                 <div className='relative z-10 h-full w-full max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2'>
                     <div className='flex flex-col justify-center h-full text-center md:text-left relative'>
                         <div className='w-full md:pr-12 lg:pr-24 mx-auto max-w-[48rem]'>
-                            <motion.div className='mb-3 text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-white tracking-wide min-h-[1.6rem]'
+                            <motion.div className='mb-3 text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-white tracking-wide min-h-[2.4rem] md:min-h-[2.8rem] flex items-center justify-center md:justify-start'
                                 initial={{ opacity: 0, y: 12 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6 }}
@@ -101,17 +101,17 @@ const Home = () => {
 
                                 </span>
                             </motion.div>
-                            <motion.h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#0b7def] via-[#f08409] to-[#39037b] drop-shadow-lg '
+                            <motion.h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#0b7def] via-[#f08409] to-[#39037b] drop-shadow-lg '
                                 initial={{ opacity: 0, y: 12 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 1 }}
                             >
                                 Hello, I'm
                                 <br />
-                                <span className='text-white font-bold text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl lg:whitespace-nowrap '>{profile?.name || "Developer"}</span>
+                                <span className='text-white font-bold text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl lg:whitespace-nowrap '>{profile?.name || "Developer"}</span>
                             </motion.h1>
 
-                            <motion.p className='mt-6 text-base sm:text-md md:text-lg text-gray-300 max-w-2xl mx-auto md:mx-0'
+                            <motion.p className='mt-6 text-base sm:text-lg md:text-xl lg:text-lg text-gray-300 max-w-2xl mx-auto md:mx-0'
                                 initial={{ opacity: 0, y: 12 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 0.8 }}
