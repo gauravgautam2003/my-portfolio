@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import AuthRouter from "./routes/user.routes"
@@ -8,6 +8,17 @@ import IntroAnimation from './components/IntroAnimation'
 
 const App = () => {
     const [introDone, setIntroDone] = useState(false);
+    
+    useEffect(() => {
+        const activateBackend = async () => {
+            try {
+                await fetch(`${import.meta.env.VITE_BACKEND_URL}`);
+            } catch (error) {
+                console.error("Error activating backend:", error);
+            }
+        };
+        activateBackend();
+    }, []);
 
     return (
         <>
