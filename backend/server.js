@@ -14,6 +14,8 @@ import projectRouter from "./routes/project.routes.js";
 import experienceRouter from "./routes/experience.routes.js";
 import skillRouter from "./routes/skill.routes.js";
 import aiRouter from "./routes/ai.routes.js";
+import authRouter from "./routes/auth.routes.js"; // New auth route
+import seedAdmin from "./config/seeder.js"; // New admin seeder
 import errorMiddleware from "./middleware/error.middleware.js";
 
 const app = express();
@@ -51,6 +53,7 @@ app.use("/api/projects", projectRouter);
 app.use("/api/experiences", experienceRouter);
 app.use("/api/skills", skillRouter);
 app.use("/api/ai", aiRouter);
+app.use("/api/auth", authRouter); // Auth router registration
 
 // ─── 404 Handler ────────────────────────────────────────────────────────────
 app.use((req, res) => {
@@ -67,6 +70,7 @@ app.use(errorMiddleware);
 const startServer = async () => {
     try {
         await connectDB();
+        await seedAdmin(); // Automaticaly ensure admin exists from .env
 
         app.listen(PORT, () => {
             console.log(`\n🚀 Server running on http://localhost:${PORT}`);

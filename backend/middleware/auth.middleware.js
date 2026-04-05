@@ -1,14 +1,58 @@
-const validateContact = (req, res, next) => {
+import jwt from "jsonwebtoken";
+import User from "../models/User.model.js";
+import ENV from "../config/env.js";
 
-    const { name, email, subject, message } = req.body;
+const protect = async (req, res, next) => {
+    let token;
 
-    if(!name || !email || !subject || !message){
-        return res.status(400).json({
-            message: "All fields are required"
-        });
+    if (
+        req.headers.authorization &&
+        req.headers.authorization.startsWith("Bearer")
+    ) {
+        try {
+            // Get token from header
+            token = req.headers.authorization.split(" ")[1];
+
+            // Verify token
+            const decoded = jwt.verify(token, ENV.SECRET_TOKEN_KEY);
+
+            // Get user from the token but exclude password
+            req.user = await User.findById(decoded.id).select("-password");
+
+            if (!req.user) {
+                return res.status(401).json({
+                    success: false,
+                    message: "User not found",
+                });
+            }
+
+            next();
+        } catch (error) {
+            console.error("Auth error:", error.message);
+            res.status(401).json({
+                success: false,
+                message: "Not authorized",
+            });
+        }
     }
 
+    if (!token) {
+        res.status(401).json({
+            success: false,
+            message: "Not authorized, no token",
+        });
+    }
+};
+
+const validateContact = (req, res, next) => {
+    const { name, email, subject, message } = req.body;
+    if (!name || !email || !subject || !message) {
+        return res.status(400).json({
+            success: false,
+            message: "Please provide all fields: name, email, subject, and message",
+        });
+    }
     next();
 };
 
-export default validateContact
+export { protect, validateContact };

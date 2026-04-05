@@ -1,6 +1,6 @@
 import express from "express";
 import Contact from "../controllers/contact.controller.js";
-import validateContact from "../middleware/auth.middleware.js";
+import { validateContact } from "../middleware/auth.middleware.js";
 
 const contactRouter = express.Router();
 

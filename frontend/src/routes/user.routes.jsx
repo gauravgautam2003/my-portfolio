@@ -6,6 +6,18 @@ import Experience from "../pages/Experience";
 import Projects from "../pages/Projects";
 import Contact from "../pages/Contact";
 import Admin from "../pages/Admin";
+import Login from "../pages/Login";
+import { useAuth } from "../context/AuthContext";
+import { Navigate } from "react-router-dom";
+
+// ─── Protected Route Component ───────────────────────────────────────────────
+const ProtectedRoute = ({ children }) => {
+    const { isAuthenticated, loading } = useAuth();
+
+    if (loading) return <div className="min-h-screen bg-black flex items-center justify-center text-white">Loading...</div>;
+    
+    return isAuthenticated ? children : <Navigate to="/login" />;
+};
 
 const AuthRouter = () => {
     return (
@@ -17,8 +29,13 @@ const AuthRouter = () => {
             <Route path="/projects"   element={<Projects />} />
             <Route path="/projects/:id" element={<Projects />} />
             <Route path="/contact"    element={<Contact />} />
-            {/* Admin panel — manage all portfolio content */}
-            <Route path="/admin"      element={<Admin />} />
+            <Route path="/login"      element={<Login />} />
+            {/* Admin panel — manage all portfolio content — Protected */}
+            <Route path="/admin"      element={
+                <ProtectedRoute>
+                    <Admin />
+                </ProtectedRoute>
+            } />
         </Routes>
     );
 };

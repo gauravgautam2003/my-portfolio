@@ -1,27 +1,42 @@
 import React, { useContext } from 'react'
 import { motion } from 'framer-motion'
-import { FaReact, FaNodeJs, FaGitAlt, FaGithub, FaJs, FaHtml5, FaCss3Alt, FaFigma, FaCode, FaLaptopCode } from "react-icons/fa";
-import { SiNextdotjs, SiTypescript, SiTailwindcss, SiMongodb, SiExpress, SiFramer, SiVercel } from "react-icons/si";
+import { FaReact, FaNodeJs, FaGitAlt, FaGithub, FaJs, FaHtml5, FaCss3Alt, FaFigma, FaCode, FaLaptopCode, FaPython, FaJava, FaRobot, FaBolt, FaTerminal } from "react-icons/fa";
+import { SiNextdotjs, SiTypescript, SiTailwindcss, SiMongodb, SiExpress, SiFramer, SiVercel, SiMongoose, SiRedux, SiCplusplus, SiC, SiOpenai, SiGithubcopilot, SiGoogle } from "react-icons/si";
 import { PortfolioContext } from '../context/PortfolioContext';
 
 // Map skill name → react-icon component (for known icons)
 const ICON_MAP = {
-    "React.js": <FaReact className="text-4xl" />,
-    "Next.js": <SiNextdotjs className="text-4xl" />,
+    "React": <FaReact className="text-4xl" />,
+    "Next": <SiNextdotjs className="text-4xl" />,
     "JavaScript": <FaJs className="text-4xl" />,
     "TypeScript": <SiTypescript className="text-4xl" />,
     "Tailwind CSS": <SiTailwindcss className="text-4xl" />,
     "Framer Motion": <SiFramer className="text-4xl" />,
     "HTML": <FaHtml5 className="text-4xl" />,
     "CSS": <FaCss3Alt className="text-4xl" />,
-    "Node.js": <FaNodeJs className="text-4xl" />,
-    "Express.js": <SiExpress className="text-4xl" />,
+    "Node": <FaNodeJs className="text-4xl" />,
+    "Express": <SiExpress className="text-4xl" />,
     "MongoDB": <SiMongodb className="text-4xl" />,
     "REST APIs": <SiVercel className="text-4xl" />,
     "Git": <FaGitAlt className="text-4xl" />,
     "GitHub": <FaGithub className="text-4xl" />,
     "Figma": <FaFigma className="text-4xl" />,
     "VS Code": <SiVercel className="text-4xl" />,
+    "Python": <FaPython className="text-4xl" />,
+    "Mongoose": <SiMongoose className="text-4xl" />,
+    "Redux": <SiRedux className="text-4xl" />,
+    "ChatGPT": <SiOpenai className="text-4xl" />,
+    "Copilot": <SiGithubcopilot className="text-4xl" />,
+    "Antigravity": <FaBolt className="text-4xl text-[#0b7def]" />,
+    "Codex": <FaCode className="text-4xl text-[#00bf8f]" />,
+    "Grok": <FaCode className="text-4xl" />,
+    "Gemini": <SiGoogle className="text-4xl" />,
+    "Claude": <FaRobot className="text-4xl" />,
+    "Java": <FaJava className="text-4xl" />,
+    "C++": <SiCplusplus className="text-4xl" />,
+    "C": <SiC className="text-4xl" />,
+    "Blackbox AI": <FaTerminal className="text-4xl" />,
+    "Cursor": <FaTerminalCursor className="text-4xl" />,
 };
 
 const CATEGORY_ICONS = {

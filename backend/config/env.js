@@ -12,6 +12,9 @@ const ENV_URI = {
     CLOUDINARY_API_KEY : process.env.CLOUDINARY_API_KEY,
     CLOUDINARY_API_SECRET : process.env.CLOUDINARY_API_SECRET,
     GEMINI_API_KEY : process.env.GEMINI_API_KEY,
+    ADMIN_PASSWORD : process.env.ADMIN_PASSWORD,
 }
+
+console.log("ENV Loaded Keys:", Object.keys(ENV_URI).filter(k => ENV_URI[k]));
 
 export default ENV_URI;

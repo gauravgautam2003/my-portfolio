@@ -9,6 +9,18 @@ const api = axios.create({
     withCredentials: true,
 });
 
+// ─── Add Request Interceptor ────────────────────────────────────────────────
+// This automatically adds the token to all outgoing requests from this instance
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+}, (error) => {
+    return Promise.reject(error);
+});
+
 // ─── Profile API ─────────────────────────────────────────────────────────────
 export const profileAPI = {
     /** Fetch profile data (About page, Home page) */
@@ -97,6 +109,18 @@ export const contactAPI = {
 export const aiAPI = {
     /** Enhance text via Gemini: { text, contextType } */
     enhance: (data) => api.post("/api/ai/enhance", data),
+};
+
+// ─── AUTH API ──────────────────────────────────────────────────────────────────
+export const authAPI = {
+    /** Login admin: { email, password } */
+    login: (data) => api.post("/api/auth/login", data),
+
+    /** Get current admin profile */
+    getMe: () => api.get("/api/auth/me"),
+
+    /** Initial admin setup */
+    init: () => api.get("/api/auth/init"),
 };
 
 export default api;
