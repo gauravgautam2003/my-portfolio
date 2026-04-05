@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { motion } from 'framer-motion'
-import { FaReact, FaNodeJs, FaGitAlt, FaGithub, FaJs, FaHtml5, FaCss3Alt, FaFigma, FaCode, FaLaptopCode, FaPython, FaJava, FaRobot, FaBolt, FaTerminal } from "react-icons/fa";
+import { FaReact, FaNodeJs, FaGitAlt, FaGithub, FaJs, FaHtml5, FaCss3Alt, FaFigma, FaCode, FaLaptopCode, FaPython, FaJava, FaRobot, FaBolt, FaTerminal} from "react-icons/fa";
 import { SiNextdotjs, SiTypescript, SiTailwindcss, SiMongodb, SiExpress, SiFramer, SiVercel, SiMongoose, SiRedux, SiCplusplus, SiC, SiOpenai, SiGithubcopilot, SiGoogle } from "react-icons/si";
 import { PortfolioContext } from '../context/PortfolioContext';
 
@@ -36,7 +36,7 @@ const ICON_MAP = {
     "C++": <SiCplusplus className="text-4xl" />,
     "C": <SiC className="text-4xl" />,
     "Blackbox AI": <FaTerminal className="text-4xl" />,
-    "Cursor": <FaTerminalCursor className="text-4xl" />,
+    "Cursor": <FaTerminal className="text-4xl" />,
 };
 
 const CATEGORY_ICONS = {
@@ -71,7 +71,7 @@ const Skills = () => {
                         <h2 className='text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4'>
                             My <span className='bg-clip-text text-white'>Skills</span>
                         </h2>
-                        <p className='text-gray-400 mt-4 max-w-2xl mx-auto'>
+                        <p className='text-gray-400 mt-4 text-sm md:text-base max-w-2xl mx-auto'>
                             Technologies and tools I work with to build modern, scalable applications
                         </p>
                     </motion.div>
@@ -105,7 +105,7 @@ const Skills = () => {
                                         transition={{ duration: 0.6, delay: catIndex * 0.1 }} viewport={{ once: true }}>
                                         <div className='flex justify-center md:justify-start items-center gap-3 mb-6'>
                                             {category.icon}
-                                            <h3 className='text-2xl font-bold text-white'>{category.title}</h3>
+                                            <h3 className='text-xl md:text-2xl font-bold text-white'>{category.title}</h3>
                                         </div>
                                         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
                                             {category.skills.map((skill, skillIndex) => (

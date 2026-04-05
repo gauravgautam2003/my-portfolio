@@ -119,7 +119,7 @@ const Contact = () => {
                     </motion.p>
                 </motion.div>
 
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
                     {/* Contact Info */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -127,8 +127,8 @@ const Contact = () => {
                         transition={{ duration: 0.6 }}
                         viewport={{ once: true }}
                     >
-                        <h3 className='text-2xl font-bold text-white mb-8'>Let's talk about everything!</h3>
-                        <p className='text-gray-400 mb-8 leading-relaxed'>
+                        <h3 className='text-xl md:text-2xl font-bold text-white mb-8'>Let's talk about everything!</h3>
+                        <p className='text-gray-400 mb-8 text-sm md:text-base leading-relaxed'>
                             Don't like forms? Send me an email. 👋 Alternatively, feel free to reach out to me using any of the social links below. I'll get back to you as soon as possible.
                         </p>
 
@@ -147,14 +147,14 @@ const Contact = () => {
                                 >
                                     <motion.div
                                         whileHover={{ scale: 1.1, rotate: 5 }}
-                                        className='w-12 h-12 rounded-full flex items-center justify-center'
+                                        className='w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center'
                                         style={{ backgroundColor: `${info.color}20`, color: info.color }}
                                     >
                                         {info.icon}
                                     </motion.div>
                                     <div>
-                                        <p className='text-gray-400 text-sm'>{info.label}</p>
-                                        <p className='text-white text-sm font-medium '>{info.value}</p>
+                                        <p className='text-gray-400 text-xs md:text-sm'>{info.label}</p>
+                                        <p className='text-white text-xs md:text-sm font-medium '>{info.value}</p>
                                     </div>
                                 </motion.a>
                             ))}
@@ -170,14 +170,14 @@ const Contact = () => {
                     >
                         <motion.form
                             onSubmit={handleSubmit}
-                            className='bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8'
+                            className='bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8'
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
                         >
                             <motion.h3
                                 variants={inputVariants}
-                                className='text-xl font-bold text-white mb-6'
+                                className='text-lg md:text-xl font-bold text-white mb-6'
                             >
                                 Send a Message
                             </motion.h3>

@@ -83,14 +83,14 @@ const Projects = () => {
 
                 {/* Premium Slider */}
                 {loadingProjects ? (
-                    <div className='w-full max-w-4xl mx-auto h-[600px] bg-white/5 rounded-3xl animate-pulse border border-white/5' />
+                    <div className='w-full max-w-4xl mx-auto h-[500px] md:h-[600px] bg-white/5 rounded-3xl animate-pulse border border-white/5' />
                 ) : filteredProjects.length === 0 ? (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className='text-center py-32 text-gray-500'>
                         <FaImage size={60} className='mx-auto mb-6 opacity-20' />
                         <p className='text-xl'>No projects found in this category.</p>
                     </motion.div>
                 ) : (
-                    <div className='relative w-full max-w-5xl mx-auto h-[650px] md:h-[600px] flex items-center justify-center perspective-[2000px] pt-4 md:pt-0'>
+                    <div className='relative w-full max-w-5xl mx-auto min-h-[550px] md:min-h-[600px] flex items-center justify-center perspective-[2000px] pt-4 md:pt-0'>
                         
                         <AnimatePresence initial={false} custom={direction}>
                             {currentProject && (
@@ -110,10 +110,10 @@ const Projects = () => {
                                         if (swipe < -swipeConfidenceThreshold) paginate(1);
                                         else if (swipe > swipeConfidenceThreshold) paginate(-1);
                                     }}
-                                    className='absolute w-full max-w-4xl h-[600px] md:h-[550px] bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-grab active:cursor-grabbing'
+                                    className='absolute w-full max-w-4xl min-h-[500px] md:h-[550px] bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-grab active:cursor-grabbing'
                                 >
                                     {/* Image Section */}
-                                    <div className='w-full md:w-1/2 h-52 md:h-full shrink-0 relative overflow-hidden bg-black/40'>
+                                    <div className='w-full md:w-[45%] lg:w-1/2 h-48 sm:h-52 md:h-full shrink-0 relative overflow-hidden bg-black/40'>
                                         {currentProject.image ? (
                                             <img src={currentProject.image} alt={currentProject.title} className='w-full h-full object-cover pointer-events-none' />
                                         ) : (
@@ -125,24 +125,24 @@ const Projects = () => {
                                     </div>
 
                                     {/* Content Section */}
-                                    <div className='w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center relative'>
-                                        <div className='absolute top-6 right-6 md:top-8 md:right-8'>
-                                            <span className='px-3 md:px-4 py-1.5 text-[10px] md:text-xs font-bold tracking-widest uppercase bg-black/50 backdrop-blur-md text-[#00bf8f] border border-[#00bf8f]/30 rounded-full'>
+                                    <div className='w-full md:w-[55%] lg:w-1/2 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center relative'>
+                                        <div className='absolute top-4 right-4 md:top-8 md:right-8'>
+                                            <span className='px-3 md:px-4 py-1.5 text-[9px] md:text-xs font-bold tracking-widest uppercase bg-black/50 backdrop-blur-md text-[#00bf8f] border border-[#00bf8f]/30 rounded-full'>
                                                 {currentProject.category}
                                             </span>
                                         </div>
 
-                                        <h3 className='text-3xl md:text-4xl font-black text-white mb-4 mt-4 md:mt-0'>
+                                        <h3 className='text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-black text-white mb-3 mt-4 md:mt-0'>
                                             {currentProject.title}
                                         </h3>
                                         
-                                        <p className='text-gray-400 text-base md:text-lg mb-8 leading-relaxed line-clamp-4'>
+                                        <p className='text-gray-400 text-sm md:text-base mb-6 md:mb-8 leading-relaxed line-clamp-3 md:line-clamp-4'>
                                             {currentProject.description}
                                         </p>
                                         
-                                        <div className='flex flex-wrap gap-2 mb-10'>
+                                        <div className='flex flex-wrap gap-2 mb-8 md:mb-10'>
                                             {currentProject.techStack?.map(tech => (
-                                                <span key={tech} className='px-3 py-1.5 text-xs font-medium bg-white/5 text-gray-300 rounded border border-white/10'>
+                                                <span key={tech} className='px-2.5 py-1 text-[10px] md:text-xs font-medium bg-white/5 text-gray-300 rounded border border-white/10'>
                                                     {tech}
                                                 </span>
                                             ))}
@@ -151,13 +151,13 @@ const Projects = () => {
                                         <div className='flex items-center gap-4 mt-auto'>
                                             {currentProject.github && currentProject.github !== '#' && (
                                                 <a href={currentProject.github} target='_blank' rel='noopener noreferrer' 
-                                                   className='w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors z-20'>
-                                                    <FaGithub size={20} />
+                                                   className='w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors z-20'>
+                                                    <FaGithub size={18} md:size={20} />
                                                 </a>
                                             )}
                                             {currentProject.liveDemo && (
                                                 <a href={currentProject.liveDemo} target='_blank' rel='noopener noreferrer'
-                                                   className='flex-1 h-12 rounded-full bg-gradient-to-r from-[#0b7def] to-[#00bf8f] flex items-center justify-center gap-2 text-white font-semibold hover:shadow-[0_0_20px_rgba(11,125,239,0.4)] transition-all z-20'>
+                                                   className='flex-1 h-10 md:h-12 rounded-full bg-gradient-to-r from-[#0b7def] to-[#00bf8f] flex items-center justify-center gap-2 text-white text-sm md:text-base font-semibold hover:shadow-[0_0_20px_rgba(11,125,239,0.4)] transition-all z-20'>
                                                     View Live Demo
                                                     <FaExternalLinkAlt size={14} />
                                                 </a>

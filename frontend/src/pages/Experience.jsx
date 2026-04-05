@@ -10,16 +10,16 @@ const cardVariants = {
 }
 
 const TimelineCard = ({ item, isLast, accentColor, glowColor }) => (
-    <motion.div variants={cardVariants} className='relative flex flex-col md:flex-row gap-6 md:gap-12 group'>
+    <motion.div variants={cardVariants} className='relative flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-12 group'>
         
         {/* Desktop Date/Company Column (Left) */}
         <div className='hidden md:flex flex-col items-end w-1/3 pt-6 text-right z-10'>
-            <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-semibold tracking-wide backdrop-blur-md mb-2 transition-colors duration-300'
+            <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[10px] md:text-xs font-semibold tracking-wide backdrop-blur-md mb-2 transition-colors duration-300'
                 style={{ backgroundColor: `${accentColor}10`, borderColor: `${accentColor}40`, color: accentColor, boxShadow: `0 0 20px ${accentColor}15` }}>
                 <FaCalendarAlt size={12} /> {item.period}
             </div>
-            <h4 className='text-base font-semibold text-white group-hover:text-gray-200 transition-colors'>{item.company}</h4>
-            <span className='text-xs text-gray-500 mt-1 flex items-center justify-end gap-1.5'>
+            <h4 className='text-sm md:text-base font-semibold text-white group-hover:text-gray-200 transition-colors'>{item.company}</h4>
+            <span className='text-[10px] md:text-xs text-gray-500 mt-1 flex items-center justify-end gap-1.5'>
                 {item.location} <FaMapMarkerAlt size={12} className="opacity-70" />
             </span>
         </div>

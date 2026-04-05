@@ -68,15 +68,15 @@ const About = () => {
                         <p className='text-gray-400'>Upload your credentials via the Admin Dashboard to activate this section.</p>
                     </motion.div>
                 ) : (
-                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-12 items-start'>
                         {/* Left — Image & Info */}
                         <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}
-                            className='flex flex-col items-center lg:items-start'>
+                            className='flex flex-col items-center md:items-start'>
                             
                             {info.profileImage && (
                                 <div className='relative mb-8'>
-                                    <div className='w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-[#0b7def]/30 shadow-2xl'>
+                                    <div className='w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-[#0b7def]/30 shadow-2xl transition-all duration-300'>
                                         <img src={info.profileImage} alt={info.name} className='w-full h-full object-cover' />
                                     </div>
                                     <div className='absolute inset-0 rounded-full bg-gradient-to-tr from-[#0b7def]/20 to-[#00bf8f]/20' />
@@ -91,7 +91,7 @@ const About = () => {
                                             transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }} viewport={{ once: true }}
                                             className='bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4'>
                                             <p className='text-gray-400 text-sm mb-1'>{item.label}</p>
-                                            <p className='text-white wrap-anywhere font-medium text-sm'>{item.value}</p>
+                                            <p className='text-white wrap-anywhere font-medium text-xs sm:text-sm'>{item.value}</p>
                                         </motion.div>
                                     ))}
                                 </div>
@@ -121,8 +121,8 @@ const About = () => {
                             
                             {(info.professionalTitle || info.about) && (
                                 <div className='bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8'>
-                                    {info.professionalTitle && <h3 className='text-2xl font-bold text-white mb-4'>{info.professionalTitle}</h3>}
-                                    {info.about && <p className='text-gray-300 leading-relaxed'>{info.about}</p>}
+                                    {info.professionalTitle && <h3 className='text-xl md:text-2xl font-bold text-white mb-4'>{info.professionalTitle}</h3>}
+                                    {info.about && <p className='text-sm md:text-base text-gray-300 leading-relaxed'>{info.about}</p>}
                                 </div>
                             )}
 

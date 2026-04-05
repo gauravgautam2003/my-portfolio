@@ -86,9 +86,9 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className='relative z-10 h-full w-full max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2'>
-                    <div className='flex flex-col justify-center h-full text-center lg:text-left relative'>
-                        <div className='w-full lg:pr-24 mx-auto max-w-[48rem]'>
+                <div className='relative z-10 h-full w-full max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2'>
+                    <div className='flex flex-col justify-center h-full text-center md:text-left relative'>
+                        <div className='w-full md:pr-12 lg:pr-24 mx-auto max-w-[48rem]'>
                             <motion.div className='mb-3 text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-white tracking-wide min-h-[1.6rem]'
                                 initial={{ opacity: 0, y: 12 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -108,10 +108,10 @@ const Home = () => {
                             >
                                 Hello, I'm
                                 <br />
-                                <span className='text-white font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl lg:whitespace-nowrap '>{profile?.name || "Developer"}</span>
+                                <span className='text-white font-bold text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl lg:whitespace-nowrap '>{profile?.name || "Developer"}</span>
                             </motion.h1>
 
-                            <motion.p className='mt-6 text-base sm:text-md md:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0'
+                            <motion.p className='mt-6 text-base sm:text-md md:text-lg text-gray-300 max-w-2xl mx-auto md:mx-0'
                                 initial={{ opacity: 0, y: 12 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 0.8 }}
@@ -119,7 +119,7 @@ const Home = () => {
                                 {profile?.about || "I turn complex ideas into seamless, high-impact web experiences - building modern, scalable and lightning-fast applications that make a difference."}
                             </motion.p>
 
-                            <motion.div className='mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6'
+                            <motion.div className='mt-10 flex flex-wrap items-center justify-center md:justify-start gap-6'
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.8, duration: 0.8 }}
@@ -127,7 +127,7 @@ const Home = () => {
                                 <a href="/Resume.pdf" className='px-6 py-3 rounded-2xl font-bold text-md text-black bg-white hover:bg-gray-200 shadow-lg hover:scale-105 transition-all duration-500'>My Resume</a>
                             </motion.div>
 
-                            <div className='mt-10 flex gap-5 text-xl md:text-lg justify-center lg:justify-start'>
+                            <div className='mt-10 flex gap-5 text-xl md:text-lg justify-center md:justify-start'>
                                 {socials.map(({ Icon, label, href }) => (
                                     <motion.a
                                         key={label}
@@ -148,7 +148,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='relative hidden lg:block'>
+                    <div className='relative hidden md:block'>
                         <div className='absolute top-1/2 -translate-y-1/2 pointer-events-none '
                             style={{
                                 right: "10px", width: "min(22vw, 410px)", height: "min(40vw, 760px)", borderRadius: "50%", filter: "blur(38px)",
