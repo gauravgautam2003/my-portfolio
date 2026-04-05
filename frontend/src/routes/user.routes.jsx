@@ -15,23 +15,23 @@ const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
 
     if (loading) return <div className="min-h-screen bg-black flex items-center justify-center text-white">Loading...</div>;
-    
+
     return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
 const AuthRouter = () => {
     return (
         <Routes>
-            <Route path="/"           element={<Home />} />
-            <Route path="/about"      element={<About />} />
-            <Route path="/skills"     element={<Skills />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/skills" element={<Skills />} />
             <Route path="/experience" element={<Experience />} />
-            <Route path="/projects"   element={<Projects />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:id" element={<Projects />} />
-            <Route path="/contact"    element={<Contact />} />
-            <Route path="/login"      element={<Login />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
             {/* Admin panel — manage all portfolio content — Protected */}
-            <Route path="/admin"      element={
+            <Route path="/admin" element={
                 <ProtectedRoute>
                     <Admin />
                 </ProtectedRoute>
