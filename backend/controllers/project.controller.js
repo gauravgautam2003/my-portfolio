@@ -7,10 +7,20 @@ const uploadBufferToCloudinary = (buffer, folder = "portfolio/projects") => {
         const stream = cloudinary.uploader.upload_stream(
             { folder, resource_type: "image" },
             (error, result) => {
-                if (error) reject(error);
-                else resolve(result);
+                if (error) {
+                    console.error("Cloudinary Callback Error:", error);
+                    return reject(error);
+                }
+                resolve(result);
             }
         );
+
+        // Listen for stream-level errors (like ECONNRESET)
+        stream.on("error", (error) => {
+            console.error("Cloudinary Stream Error:", error);
+            reject(error);
+        });
+
         stream.end(buffer);
     });
 };

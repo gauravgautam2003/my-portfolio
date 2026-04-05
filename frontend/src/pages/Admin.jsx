@@ -30,7 +30,7 @@ const Admin = () => {
                 <div className='absolute -bottom-40 -right-40 w-[50vw] h-[50vh] rounded-full bg-gradient-to-r from-[#a855f7]/15 to-[#f08409]/10 blur-[120px]' />
             </div>
 
-            <div className='relative z-10 max-w-5xl mx-auto px-4 py-12'>
+            <div className='relative z-10 max-w-5xl mx-auto px-4 py-16'>
 
                 {/* Header */}
                 <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}
