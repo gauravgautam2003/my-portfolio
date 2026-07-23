@@ -8,6 +8,7 @@ import img1 from "../assets/img1.JPG"
 import m1 from "../assets/m1.PNG"
 import w1 from "../assets/w1.PNG"
 import img2 from "../assets/img2.JPG"
+import ParticlesBackground from '../components/ParticlesBackground';
 
 const FILTER_BUTTONS = ["All", "Frontend", "Backend", "Full Stack", "Mobile"]
 
@@ -58,6 +59,7 @@ const Projects = () => {
 
     return (
         <section id='projects' className='w-full min-h-screen bg-[#050505] relative overflow-hidden py-24 flex flex-col justify-center perspective-[1000px]'>
+            <ParticlesBackground />
             {/* Background Ambient Glows */}
             <div className='absolute inset-0 pointer-events-none'>
                 <div className='absolute top-20 -right-40 w-[60vw] h-[60vh] rounded-full bg-[#0b7def] opacity-[0.08] blur-[150px]' />

@@ -5,6 +5,7 @@ import { FaLinkedin } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { PortfolioContext } from '../context/PortfolioContext';
+import ParticlesBackground from '../components/ParticlesBackground';
 
 const glowVariants = {
     initial: { scale: 1, y: 0, filter: "drop-shadow(0 0 0 rgba(0,0,0,0))" },
@@ -20,32 +21,33 @@ const About = () => {
 
     // Dynamic data mapping right from the DB context
     const info = {
-        name:         profile?.name         || "",
-        location:     profile?.location     || "",
-        email:        profile?.email        || "",
+        name: profile?.name || "",
+        location: profile?.location || "",
+        email: profile?.email || "",
         availability: profile?.availability || "",
-        about:        profile?.about        || "",
+        about: profile?.about || "",
         professionalTitle: profile?.professionalTitle || "",
         profileImage: profile?.profileImage || null,
-        github:    profile?.github    || "",
-        linkedin:  profile?.linkedin  || "",
-        whatsapp:  profile?.whatsapp  || "",
+        github: profile?.github || "",
+        linkedin: profile?.linkedin || "",
+        whatsapp: profile?.whatsapp || "",
     }
 
     const personalInfo = [
-        { label: "Name",         value: info.name },
-        { label: "Location",     value: info.location },
-        { label: "Email",        value: info.email },
+        { label: "Name", value: info.name },
+        { label: "Location", value: info.location },
+        { label: "Email", value: info.email },
         { label: "Availability", value: info.availability },
     ].filter(item => item.value !== "");
 
     const educationList = profile?.education || [];
-    
+
     // Check if we actually have enough data to render the full profile
     const hasData = profile && profile.name;
 
     return (
         <section id='about' className='w-full min-h-screen bg-black relative overflow-hidden py-20 flex flex-col justify-center'>
+            <ParticlesBackground />
             <div className='absolute inset-0 pointer-events-none'>
                 <div className='absolute top-20 -left-32 w-[60vw] h-[60vh] rounded-full bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2] opacity-20 blur-[120px]' />
                 <div className='absolute bottom-20 -right-32 w-[60vw] h-[60vh] rounded-full bg-gradient-to-r from-[#4b3aff] via-[#00bf8f] to-[#1cd8d2] opacity-15 blur-[120px]' />
@@ -60,7 +62,7 @@ const About = () => {
                 </motion.div>
 
                 {loadingProfile ? (
-                     <div className='w-full max-w-4xl mx-auto h-[400px] bg-white/5 rounded-3xl animate-pulse border border-white/5' />
+                    <div className='w-full max-w-4xl mx-auto h-[400px] bg-white/5 rounded-3xl animate-pulse border border-white/5' />
                 ) : !hasData ? (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className='text-center py-20 text-gray-500 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 max-w-2xl mx-auto'>
                         <FaUserPlus size={50} className='mx-auto mb-6 opacity-30 text-[#0b7def]' />
@@ -73,7 +75,7 @@ const About = () => {
                         <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}
                             className='flex flex-col items-center md:items-start'>
-                            
+
                             {info.profileImage && (
                                 <div className='relative mb-8'>
                                     <div className='w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-[#0b7def]/30 shadow-2xl transition-all duration-300'>
@@ -100,8 +102,8 @@ const About = () => {
                             {/* Social Links */}
                             <div className='flex flex-wrap gap-4'>
                                 {[
-                                    { href: info.github,   Icon: FaGithub,       color: "#ffffff" },
-                                    { href: info.linkedin, Icon: FaLinkedin,     color: "#0077B5" },
+                                    { href: info.github, Icon: FaGithub, color: "#ffffff" },
+                                    { href: info.linkedin, Icon: FaLinkedin, color: "#0077B5" },
                                     { href: info.whatsapp, Icon: IoLogoWhatsapp, color: "#25D366" },
                                     { href: info.email ? `mailto:${info.email}` : "", Icon: MdEmail, color: "#4285f4" },
                                 ].filter(s => s.href).map(({ href, Icon, color }) => (
@@ -118,7 +120,7 @@ const About = () => {
                         <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6, delay: 0.3 }} viewport={{ once: true }}
                             className='space-y-8'>
-                            
+
                             {(info.professionalTitle || info.about) && (
                                 <div className='bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8'>
                                     {info.professionalTitle && <h3 className='text-xl md:text-2xl font-bold text-white mb-4'>{info.professionalTitle}</h3>}

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaPaperPlane } from "react-icons/fa"
 import { PortfolioContext } from "../context/PortfolioContext";
 import { toast, ToastContainer } from "react-toastify";
+import ParticlesBackground from "../components/ParticlesBackground";
 
 
 const Contact = () => {
@@ -80,6 +81,7 @@ const Contact = () => {
 
     return (
         <section id='contact' className='w-full min-h-screen bg-black relative overflow-hidden py-20'>
+            <ParticlesBackground />
                 <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark"/>
             {/* Background Effects */}
 

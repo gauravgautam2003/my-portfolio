@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { motion } from 'framer-motion'
 import { FaBriefcase, FaGraduationCap, FaCalendarAlt, FaMapMarkerAlt, FaBuilding, FaRegFolderOpen } from "react-icons/fa"
 import { PortfolioContext } from '../context/PortfolioContext'
+import ParticlesBackground from '../components/ParticlesBackground'
 
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15 } } }
 const cardVariants = {
@@ -11,7 +12,7 @@ const cardVariants = {
 
 const TimelineCard = ({ item, isLast, accentColor, glowColor }) => (
     <motion.div variants={cardVariants} className='relative flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-12 group'>
-        
+
         {/* Desktop Date/Company Column (Left) */}
         <div className='hidden md:flex flex-col items-end w-1/3 pt-6 text-right z-10'>
             <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[10px] md:text-xs font-semibold tracking-wide backdrop-blur-md mb-2 transition-colors duration-300'
@@ -51,15 +52,15 @@ const TimelineCard = ({ item, isLast, accentColor, glowColor }) => (
         {/* Content Card (Right) */}
         <div className='md:w-2/3 pb-12 z-10'>
             <div className='bg-white/[0.02] backdrop-blur-2xl border border-white/5 rounded-3xl p-6 md:p-8 transition-all duration-500 hover:border-white/20 hover:-translate-y-1 relative overflow-hidden group-hover:shadow-2xl'
-                 style={{ '--hover-glow': `${accentColor}20` }}>
-                 
+                style={{ '--hover-glow': `${accentColor}20` }}>
+
                 {/* Subtle internal glow on hover */}
                 <div className='absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none'
-                     style={{ background: `radial-gradient(circle at top right, var(--hover-glow), transparent 70%)` }} />
+                    style={{ background: `radial-gradient(circle at top right, var(--hover-glow), transparent 70%)` }} />
 
                 <div className='relative z-10'>
                     <h3 className='text-xl md:text-2xl font-bold text-white mb-2 tracking-tight'>{item.title}</h3>
-                    
+
                     {/* Mobile Company/Location (hidden on desktop) */}
                     <div className='md:hidden mb-4 space-y-1'>
                         <p className='text-sm font-semibold' style={{ color: accentColor }}>{item.company}</p>
@@ -69,7 +70,7 @@ const TimelineCard = ({ item, isLast, accentColor, glowColor }) => (
                     <p className='text-gray-400 text-sm leading-relaxed mb-6'>
                         {item.description}
                     </p>
-                    
+
                     {/* Tech Stack */}
                     {item.technologies && item.technologies.length > 0 && (
                         <div className='flex flex-wrap gap-2 pt-2'>
@@ -91,23 +92,24 @@ const Experience = () => {
 
     // Fallbacks removed — directly mapping from database variables
     const displayWork = work || []
-    const displayEdu  = education || []
-    
+    const displayEdu = education || []
+
     const isEmpty = displayWork.length === 0 && displayEdu.length === 0;
 
     return (
         <section id='experience' className='w-full min-h-screen bg-[#050505] relative py-24 flex flex-col justify-center'>
+            <ParticlesBackground />
             {/* Ambient Background */}
             <div className='fixed inset-0 pointer-events-none overflow-hidden'>
-                <div className='absolute -top-[20%] -right-[10%] w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] rounded-full bg-[#0b7def] opacity-[0.05] blur-[150px]' />
+                <div className='absolute -top-[20%] -right-[10%] w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] rounded-full bg-[#1c7ddd] opacity-[0.05] blur-[150px]' />
                 <div className='absolute top-[40%] -left-[10%] w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] rounded-full bg-[#1cd8d2] opacity-[0.05] blur-[120px]' />
             </div>
 
             <div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full'>
-                
+
                 {/* Header Section */}
                 <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }} viewport={{ once: true, margin: "-100px" }} 
+                    transition={{ duration: 0.8, ease: "easeOut" }} viewport={{ once: true, margin: "-100px" }}
                     className='text-center mb-16'>
                     <h2 className='text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 mb-4'>
                         Experience
@@ -129,7 +131,7 @@ const Experience = () => {
                     </motion.div>
                 ) : (
                     <div className='max-w-5xl mx-auto relative'>
-                        
+
                         {/* Work Experience Section */}
                         {displayWork.length > 0 && (
                             <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className='mb-20'>
@@ -139,10 +141,10 @@ const Experience = () => {
                                     </div>
                                     <h3 className='text-2xl md:text-3xl font-bold text-white tracking-tight'>Work Experience</h3>
                                 </div>
-                                
+
                                 <div className="relative">
                                     {displayWork.map((exp, i) => (
-                                        <TimelineCard key={exp._id} item={{...exp, type: 'work'}} isLast={i === displayWork.length - 1} accentColor='#0b7def' glowColor='#00bf8f' />
+                                        <TimelineCard key={exp._id} item={{ ...exp, type: 'work' }} isLast={i === displayWork.length - 1} accentColor='#0b7def' glowColor='#00bf8f' />
                                     ))}
                                 </div>
                             </motion.div>
@@ -157,15 +159,15 @@ const Experience = () => {
                                     </div>
                                     <h3 className='text-2xl md:text-3xl font-bold text-white tracking-tight'>Education</h3>
                                 </div>
-                                
+
                                 <div className="relative">
                                     {displayEdu.map((edu, i) => (
-                                        <TimelineCard key={edu._id} item={{...edu, type: 'education'}} isLast={i === displayEdu.length - 1} accentColor='#1cd8d2' glowColor='#00bf8f' />
+                                        <TimelineCard key={edu._id} item={{ ...edu, type: 'education' }} isLast={i === displayEdu.length - 1} accentColor='#1cd8d2' glowColor='#00bf8f' />
                                     ))}
                                 </div>
                             </motion.div>
                         )}
-                        
+
                     </div>
                 )}
             </div>

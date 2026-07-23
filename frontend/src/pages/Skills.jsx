@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { FaReact, FaNodeJs, FaGitAlt, FaGithub, FaJs, FaHtml5, FaCss3Alt, FaFigma, FaCode, FaLaptopCode, FaPython, FaJava, FaRobot, FaBolt, FaTerminal} from "react-icons/fa";
 import { SiNextdotjs, SiTypescript, SiTailwindcss, SiMongodb, SiExpress, SiFramer, SiVercel, SiMongoose, SiRedux, SiCplusplus, SiC, SiOpenai, SiGithubcopilot, SiGoogle } from "react-icons/si";
 import { PortfolioContext } from '../context/PortfolioContext';
+import ParticlesBackground from '../components/ParticlesBackground';
 
 // Map skill name → react-icon component (for known icons)
 const ICON_MAP = {
@@ -60,6 +61,7 @@ const Skills = () => {
     return (
         <>
             <section id='skills' className='w-full min-h-screen bg-black relative overflow-hidden py-20 flex flex-col justify-center text-center md:text-left'>
+                <ParticlesBackground />
                 <div className='absolute inset-0 pointer-events-none'>
                     <div className='absolute top-40 -right-32 w-[50vw] h-[50vh] rounded-full bg-gradient-to-r from-[#4b3aff] via-[#00bf8f] to-[#1cd8d2] opacity-15 blur-[120px]' />
                     <div className='absolute bottom-40 -left-32 w-[50vw] h-[50vh] rounded-full bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2] opacity-20 blur-[120px]' />

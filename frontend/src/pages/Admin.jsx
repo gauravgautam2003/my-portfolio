@@ -7,12 +7,13 @@ import ProfileForm from '../forms/ProfileForm'
 import ProjectForm from '../forms/ProjectForm'
 import ExperienceFrom from '../forms/ExperienceFrom'
 import SkillsForm from '../forms/SkillsForm'
+import ParticlesBackground from '../components/ParticlesBackground'
 
 const TABS = [
-    { id: 'profile',    label: 'Profile',    Icon: FaUser,           color: '#0b7def' },
-    { id: 'projects',   label: 'Projects',   Icon: FaProjectDiagram, color: '#00bf8f' },
-    { id: 'experience', label: 'Experience', Icon: FaBriefcase,      color: '#f08409' },
-    { id: 'skills',     label: 'Skills',     Icon: FaCode,           color: '#a855f7' },
+    { id: 'profile', label: 'Profile', Icon: FaUser, color: '#0b7def' },
+    { id: 'projects', label: 'Projects', Icon: FaProjectDiagram, color: '#00bf8f' },
+    { id: 'experience', label: 'Experience', Icon: FaBriefcase, color: '#f08409' },
+    { id: 'skills', label: 'Skills', Icon: FaCode, color: '#a855f7' },
 ]
 
 const Admin = () => {
@@ -22,6 +23,7 @@ const Admin = () => {
 
     return (
         <div className='min-h-screen bg-black relative overflow-hidden'>
+            <ParticlesBackground />
             <ToastContainer position='top-right' autoClose={3000} theme='dark' />
 
             {/* Background blobs */}
@@ -101,19 +103,19 @@ const Admin = () => {
                                     <div>
                                         <h2 className='text-white font-bold text-lg'>{current.label}</h2>
                                         <p className='text-gray-500 text-xs'>
-                                            {activeTab === 'profile'    && 'Update your personal info & photo'}
-                                            {activeTab === 'projects'   && 'Add, edit or remove your projects'}
+                                            {activeTab === 'profile' && 'Update your personal info & photo'}
+                                            {activeTab === 'projects' && 'Add, edit or remove your projects'}
                                             {activeTab === 'experience' && 'Manage work & education timeline'}
-                                            {activeTab === 'skills'     && 'Add or remove your tech skills'}
+                                            {activeTab === 'skills' && 'Add or remove your tech skills'}
                                         </p>
                                     </div>
                                 </div>
 
                                 {/* Form Content */}
-                                {activeTab === 'profile'    && <ProfileForm />}
-                                {activeTab === 'projects'   && <ProjectForm />}
+                                {activeTab === 'profile' && <ProfileForm />}
+                                {activeTab === 'projects' && <ProjectForm />}
                                 {activeTab === 'experience' && <ExperienceFrom />}
-                                {activeTab === 'skills'     && <SkillsForm />}
+                                {activeTab === 'skills' && <SkillsForm />}
                             </motion.div>
                         </AnimatePresence>
                     </div>

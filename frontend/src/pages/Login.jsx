@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import ParticlesBackground from "../components/ParticlesBackground";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -21,8 +22,9 @@ const Login = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-neutral-900 px-4">
-            <div className="w-full max-w-md p-8 space-y-6 bg-neutral-800 rounded-2xl shadow-xl border border-neutral-700/50">
+        <div className="flex items-center justify-center min-h-screen bg-neutral-800 px-4">
+            <ParticlesBackground />
+            <div className="w-full max-w-md p-8 space-y-6 bg-neutral-800 rounded-lg shadow-2xl border border-neutral-800/50">
                 <div className="text-center">
                     <h2 className="text-3xl font-extrabold text-white tracking-tight">Admin Login</h2>
                     <p className="mt-2 text-sm text-neutral-400">Please sign in to your portfolio account</p>
