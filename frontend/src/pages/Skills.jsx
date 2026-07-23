@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { motion } from 'framer-motion'
-import { FaReact, FaNodeJs, FaGitAlt, FaGithub, FaJs, FaHtml5, FaCss3Alt, FaFigma, FaCode, FaLaptopCode, FaPython, FaJava, FaRobot, FaBolt, FaTerminal} from "react-icons/fa";
+import { FaReact, FaNodeJs, FaGitAlt, FaGithub, FaJs, FaHtml5, FaCss3Alt, FaFigma, FaCode, FaLaptopCode, FaPython, FaJava, FaRobot, FaBolt, FaTerminal } from "react-icons/fa";
 import { SiNextdotjs, SiTypescript, SiTailwindcss, SiMongodb, SiExpress, SiFramer, SiVercel, SiMongoose, SiRedux, SiCplusplus, SiC, SiOpenai, SiGithubcopilot, SiGoogle } from "react-icons/si";
 import { PortfolioContext } from '../context/PortfolioContext';
 import ParticlesBackground from '../components/ParticlesBackground';
